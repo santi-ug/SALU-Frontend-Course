@@ -16,6 +16,6 @@ authRouter.delete('/:id', deleteUser)
 authRouter.put('/edit-user', authMiddleware, updateUser)
 authRouter.put('/save-address', authMiddleware, saveAddress)
 
-// authRouter.get('/profile', authRequired, profile)
+authRouter.post('/profile', authRequired, profile)
 
 export default authRouter;

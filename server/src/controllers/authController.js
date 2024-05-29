@@ -82,6 +82,8 @@ export const login = async (req, res) => {
             const token = await createAccessToken({email: user.email, id: user._id, name: user.name})
             res.cookie('token', token)
             res.json({id: user._id, name: user.name, email: user.email, token: token, role: user.role})
+            const returnValue = [user._id, user.name, user.email, token, user.role]
+            return returnValue;
         } 
         if(!match) {
             res.json({
@@ -209,6 +211,8 @@ export const profile = async (req, res) => {
     return res.json({
         id: userFound._id,
         name: userFound.name,
-        email: userFound.email
+        email: userFound.email,
+        role: userFound.role,
+        token: req.headers.authorization
     })
 }
